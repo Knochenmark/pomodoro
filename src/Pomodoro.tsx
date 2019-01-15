@@ -13,8 +13,8 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
   private initialTime = 1500;
   // TODO Add interval member
 
-  constructor() {
-    super({});
+  constructor(props = {}) {
+    super(props);
     this.state = {
       isRunning: false,
       minutes: '25',
