@@ -53,7 +53,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
 
   public startTimer() {
     if (!this.state.isRunning) {
-      const intervalId = window.setInterval(this.updateTime, 1000);
+      const intervalId = window.setInterval(this.updateTime.bind(this), 1000);
       this.setState({ intervalId });
     } else {
       clearInterval(this.state.intervalId);
