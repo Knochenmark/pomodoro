@@ -6,12 +6,12 @@ interface IPomodoroStateProps {
   minutes: string,
   seconds: string,
   time: number,
-  isRunning: boolean
+  isRunning: boolean,
+  intervalId: number
 }
 
 export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
   private initialTime = 1500;
-  // TODO Add interval member
 
   constructor(props = {}) {
     super(props);
@@ -19,13 +19,14 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       isRunning: false,
       minutes: '25',
       seconds: '00',
-      time: this.initialTime
+      time: this.initialTime,
+      intervalId: 0
     };
     this.startTimer = this.startTimer.bind(this);
     this.resetClock = this.resetClock.bind(this);
   }
 
-  public convertToDisplayTime(ms: number) { // TODO Evaluate if the param is needed
+  public convertToDisplayTime(ms: number) {
     const minutesNum = Math.floor(ms / 60);
     const secondsNum = ms % 60;
     const minutes = minutesNum < 10 ? '0' + minutesNum : String(minutesNum);
@@ -34,18 +35,28 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
   }
 
   public resetClock() {
-    // TODO: clearInterval(intervalId);
+    clearInterval(this.state.intervalId);
     this.setState({ time: this.initialTime });
     this.convertToDisplayTime(this.initialTime);
   }
 
+  public updateTime() {
+    console.log(this.state.time)
+    if (this.state.time > 0) {
+      this.setState({ time: this.state.time - 1 })
+      this.convertToDisplayTime(this.state.time - 1);
+    } else {
+      this.setState({ isRunning: false })
+      clearInterval(this.state.intervalId);
+    }
+  }
+
   public startTimer() {
     if (!this.state.isRunning) {
-      // intervalId = window.setInterval(updateTimer, 1000);
-      // TODO: Set interval
+      const intervalId = window.setInterval(this.updateTime, 1000);
+      this.setState({ intervalId });
     } else {
-      // clearInterval(intervalId);
-      // TODO: Clear interval
+      clearInterval(this.state.intervalId);
     }
     this.setState({ isRunning: !this.state.isRunning });
   }
