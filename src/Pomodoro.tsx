@@ -2,6 +2,9 @@ import './Pomodoro.css';
 
 import * as React from 'react';
 
+import Play from './icons/Play';
+import Replay from './icons/Replay';
+
 interface IPomodoroStateProps {
   minutes: string,
   seconds: string,
@@ -99,8 +102,8 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
             </div>
             <div className="controls">
               {/* TODO play icon based on isRunning */}
-              <i onClick={this.startTimer}>Play Arrow</i>
-              <i onClick={this.resetClock}>Replay</i>
+              <i onClick={this.startTimer}><Play /></i>
+              <i onClick={this.resetClock}><Replay /></i>
             </div>
           </div>
         </div>
