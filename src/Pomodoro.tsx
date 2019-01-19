@@ -2,6 +2,7 @@ import './Pomodoro.css';
 
 import * as React from 'react';
 
+import Pause from './icons/Pause';
 import Play from './icons/Play';
 import Replay from './icons/Replay';
 
@@ -39,7 +40,10 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
 
   public resetClock() {
     clearInterval(this.state.intervalId);
-    this.setState({ time: this.initialTime });
+    this.setState({
+      time: this.initialTime,
+      isRunning: false
+    });
     this.convertToDisplayTime(this.initialTime);
   }
 
@@ -87,6 +91,8 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       return <div key={`bullet${num}`} className={`bullet pos${num} ${size}`} data-time={num} />
     });
 
+    const playIcon = this.state.isRunning ? <Pause /> : <Play />
+
     return (
       <div className="wrapper">
         <div className="square">
@@ -101,8 +107,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
               <span className="sec">{this.state.seconds}</span>
             </div>
             <div className="controls">
-              {/* TODO play icon based on isRunning */}
-              <i onClick={this.startTimer}><Play /></i>
+              <i onClick={this.startTimer}>{playIcon}</i>
               <i onClick={this.resetClock}><Replay /></i>
             </div>
           </div>
