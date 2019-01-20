@@ -74,12 +74,6 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       return <div key={`number${num}`} className={`number pos${num}`}>{num}</div>
     });
 
-    // function updateDisplayTime(time) {
-    //   $('div .bullet').removeClass("time");
-    //   $('div .bullet').slice(0, Number(time.minutes) + 1).addClass("time");
-    // }
-    // TODO: integrate time class into the bullet creation
-
     const bullets = Array.from(Array(60).keys()).map((num) => {
       let size = 'small';
       if (num % 5 === 0) {
@@ -88,7 +82,8 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       if (num === 0 || num === 15 || num === 30 || num === 45) {
         size = 'large';
       }
-      return <div key={`bullet${num}`} className={`bullet pos${num} ${size}`} data-time={num} />
+      const time = num <= Number(this.state.minutes) ? 'time' : '';
+      return <div key={`bullet${num}`} className={`bullet pos${num} ${size} ${time}`} data-time={num} />
     });
 
     const playIcon = this.state.isRunning ? <Pause /> : <Play />
