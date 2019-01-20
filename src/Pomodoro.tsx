@@ -5,6 +5,15 @@ import * as React from 'react';
 import Pause from './icons/Pause';
 import Play from './icons/Play';
 import Replay from './icons/Replay';
+import {
+  centerStyle,
+  circleStyle,
+  controlIconStyle,
+  controlStyle,
+  outerCircleStyle,
+  pomodoroStyle,
+  squareStyle
+} from './PomodoroStyles';
 
 interface IPomodoroStateProps {
   minutes: string,
@@ -107,21 +116,21 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     const playIcon = this.state.isRunning ? <Pause /> : <Play />
 
     return (
-      <div className="wrapper">
-        <div className="square">
-          <div className="outer-circle">
+      <div className={pomodoroStyle}>
+        <div className={squareStyle}>
+          <div className={outerCircleStyle}>
             {bullets}
           </div>
-          <div className="circle">
+          <div className={circleStyle}>
             {numbers}
-            <div className="center">
-              <span className="min">{this.state.minutes}</span>
+            <div className={centerStyle}>
+              <span>{this.state.minutes}</span>
               <span className={`colon${this.state.isRunning ? ' tick' : ''}`}>:</span>
-              <span className="sec">{this.state.seconds}</span>
+              <span>{this.state.seconds}</span>
             </div>
-            <div className="controls">
-              <i onClick={this.startTimer}>{playIcon}</i>
-              <i onClick={this.resetClock}><Replay /></i>
+            <div className={controlStyle}>
+              <i className={controlIconStyle} onClick={this.startTimer}>{playIcon}</i>
+              <i className={controlIconStyle} onClick={this.resetClock}><Replay /></i>
             </div>
           </div>
         </div>
