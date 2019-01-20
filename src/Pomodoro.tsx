@@ -35,6 +35,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     const secondsNum = ms % 60;
     const minutes = minutesNum < 10 ? '0' + minutesNum : String(minutesNum);
     const seconds = secondsNum < 10 ? '0' + secondsNum : String(secondsNum);
+    document.title = `Pomodoro ${minutes}:${seconds}`;
     this.setState({ minutes, seconds });
   }
 
@@ -45,6 +46,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       isRunning: false
     });
     this.convertToDisplayTime(this.initialTime);
+    document.title = 'Pomodoro';
   }
 
   public updateTime() {
