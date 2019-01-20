@@ -7,9 +7,11 @@ import Play from './icons/Play';
 import Replay from './icons/Replay';
 import {
   centerStyle,
+  circlePosition,
   circleStyle,
   controlIconStyle,
   controlStyle,
+  numberStyle,
   outerCircleStyle,
   pomodoroStyle,
   squareStyle
@@ -94,7 +96,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
   public render() {
 
     const numbers = Array.from(Array(60).keys()).filter(n => n % 5 === 0).map((num) => {
-      return <div key={`number${num}`} className={`number pos${num}`}>{num}</div>
+      return <div key={`number${num}`} className={`${numberStyle} ${circlePosition(num, 35)}`}>{num}</div>
     });
 
     const bullets = Array.from(Array(60).keys()).map((num) => {

@@ -3,6 +3,30 @@ import { style } from 'typestyle';
 const $mainColor = '#abbcd980';
 const $numberColor = '#6483b9';
 
+const circleRotation = (pos: number) => {
+  if ((pos * 6 - 90) < 0) {
+    return `${(pos * 6) - 90 + 360}deg`;
+  } else {
+    return `${(pos * 6) - 90}deg`;
+  }
+}
+
+export const circlePosition = (pos: number, trans: number) => {
+  return style({
+    transform: `rotate(${circleRotation(pos)}) translate(${trans}vh) rotate(-${circleRotation(pos)})`
+  })
+}
+
+export const numberStyle = style({
+  color: $numberColor,
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  width: '6vmin',
+  height: '6vmin',
+  margin: '-3vmin'
+});
+
 export const pomodoroStyle = style({
   height: '100vh',
   width: '100vw',
