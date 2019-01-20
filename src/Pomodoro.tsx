@@ -10,20 +10,20 @@ interface IPomodoroStateProps {
   minutes: string,
   seconds: string,
   time: number,
+  initialTime: number,
   isRunning: boolean,
   intervalId: number
 }
 
 export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
-  private initialTime = 1500;
-
   constructor(props = {}) {
     super(props);
     this.state = {
       isRunning: false,
       minutes: '25',
       seconds: '00',
-      time: this.initialTime,
+      time: 1500,
+      initialTime: 1500,
       intervalId: 0
     };
     this.startTimer = this.startTimer.bind(this);
@@ -42,10 +42,10 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
   public resetClock() {
     clearInterval(this.state.intervalId);
     this.setState({
-      time: this.initialTime,
+      time: this.state.initialTime,
       isRunning: false
     });
-    this.convertToDisplayTime(this.initialTime);
+    this.convertToDisplayTime(this.state.initialTime);
     document.title = 'Pomodoro';
   }
 
@@ -70,6 +70,18 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     this.setState({ isRunning: !this.state.isRunning });
   }
 
+  public timeHandler(minutes: number) {
+    if (minutes === 0) {
+      minutes = 60;
+    }
+    const newTime = minutes * 60;
+    this.setState({
+      time: newTime,
+      initialTime: newTime
+    })
+    this.convertToDisplayTime(newTime);
+  }
+
   public render() {
 
     const numbers = Array.from(Array(60).keys()).filter(n => n % 5 === 0).map((num) => {
@@ -85,7 +97,11 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
         size = 'large';
       }
       const time = num <= Number(this.state.minutes) ? 'time' : '';
-      return <div key={`bullet${num}`} className={`bullet pos${num} ${size} ${time}`} data-time={num} />
+      return <div
+        key={`bullet${num}`}
+        className={`bullet pos${num} ${size} ${time}`}
+        onClick={this.timeHandler.bind(this, num)}
+      />
     });
 
     const playIcon = this.state.isRunning ? <Pause /> : <Play />

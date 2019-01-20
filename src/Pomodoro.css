@@ -18,3 +18,11 @@ body {
   height: 80vh;
   position: relative;
 }
+
+/* FIXME: replace bullet style */
+.bullet {
+  width: 3vh;
+  height: 3vh;
+  border-radius: 50%;
+  background-color: aquamarine;
+}
