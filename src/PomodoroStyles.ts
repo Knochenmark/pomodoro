@@ -13,7 +13,7 @@ const circleRotation = (pos: number) => {
 
 export const circlePosition = (pos: number, trans: number) => {
   return style({
-    transform: `rotate(${circleRotation(pos)}) translate(${trans}vh) rotate(-${circleRotation(pos)})`
+    transform: `rotate(${circleRotation(pos)}) translate(${trans}vmin) rotate(-${circleRotation(pos)})`
   })
 }
 
@@ -25,6 +25,38 @@ export const numberStyle = style({
   width: '6vmin',
   height: '6vmin',
   margin: '-3vmin'
+});
+
+export const bulletStyle = style({
+  cursor: 'pointer',
+  borderRadius: '50%',
+  backgroundColor: $mainColor,
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  $nest: {
+    '&:hover': {
+      backgroundColor: $numberColor
+    },
+    '&.time': {
+      backgroundColor: $numberColor
+    },
+    '&.large': {
+      width: '6vmin',
+      height: '6vmin',
+      margin: '-3vmin'
+    },
+    '&.medium': {
+      width: '4vmin',
+      height: '4vmin',
+      margin: '-2vmin'
+    },
+    '&.small': {
+      width: '2vmin',
+      height: '2vmin',
+      margin: '-1vmin'
+    }
+  }
 });
 
 export const pomodoroStyle = style({
@@ -89,4 +121,4 @@ export const controlIconStyle = style({
       }
     },
   }
-})
+});

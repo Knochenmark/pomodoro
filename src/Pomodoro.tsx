@@ -6,6 +6,7 @@ import Pause from './icons/Pause';
 import Play from './icons/Play';
 import Replay from './icons/Replay';
 import {
+  bulletStyle,
   centerStyle,
   circlePosition,
   circleStyle,
@@ -110,7 +111,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       const time = num <= Number(this.state.minutes) ? 'time' : '';
       return <div
         key={`bullet${num}`}
-        className={`bullet pos${num} ${size} ${time}`}
+        className={`${size} ${time} ${bulletStyle} ${circlePosition(num, 45)}`}
         onClick={this.timeHandler.bind(this, num)}
       />
     });
