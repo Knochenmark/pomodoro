@@ -2,11 +2,3 @@ body {
   background-color: hsl(245,15%,25%);
   color: hsla(218,38%,76%,0.5);
 }
-
-/* FIXME: replace bullet style */
-.bullet {
-  width: 3vh;
-  height: 3vh;
-  border-radius: 50%;
-  background-color: aquamarine;
-}
