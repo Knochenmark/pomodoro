@@ -24,7 +24,11 @@ export const numberStyle = style({
   left: '50%',
   width: '6vmin',
   height: '6vmin',
-  margin: '-3vmin'
+  margin: '-3vmin',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '2.5vmin',
 });
 
 export const bulletStyle = style({
