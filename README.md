@@ -1,7 +1,6 @@
 ![Travis (.com) branch](https://travis-ci.com/Knochenmark/pomodoro.svg?branch=master)
 [![GitHub issues](https://img.shields.io/github/issues/knochenmark/pomodoro.svg)](https://github.com/Knochenmark/pomodoro/issues)
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/knochenmark/pomodoro.svg)](https://github.com/Knochenmark/pomodoro/pulls)
-[![Greenkeeper badge](https://badges.greenkeeper.io/Knochenmark/pomodoro.svg)](https://greenkeeper.io/)
 ![GitHub contributors](https://img.shields.io/github/contributors/knochenmark/pomodoro.svg)
 ![GitHub top language](https://img.shields.io/github/languages/top/knochenmark/pomodoro.svg)
 
