@@ -9,13 +9,13 @@ const circleRotation = (pos: number) => {
   } else {
     return `${(pos * 6) - 90}deg`;
   }
-}
+};
 
 export const circlePosition = (pos: number, trans: number) => {
   return style({
     transform: `rotate(${circleRotation(pos)}) translate(${trans}vmin) rotate(-${circleRotation(pos)})`
   })
-}
+};
 
 export const numberStyle = style({
   color: $numberColor,
@@ -125,4 +125,29 @@ export const controlIconStyle = style({
       }
     },
   }
+});
+
+export const bugStyle = style({
+  $nest: {
+    '& svg': {
+      $nest: {
+        '&:hover': {
+          fill: '#ff5537',
+          cursor: 'pointer'
+        }
+      },
+      fill: '#666',
+      transform: 'rotate(45deg)',
+    }
+  },
+  width: '35px',
+  height: '35px',
+  borderTopLeftRadius: '100%',
+  position: 'absolute',
+  top: '0.5rem',
+  right: '0.5rem',
+  zIndex: 1,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
 });
