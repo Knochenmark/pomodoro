@@ -2,12 +2,10 @@ import './Pomodoro.css';
 
 import * as React from 'react';
 
-import Bug from './icons/Bug';
 import Pause from './icons/Pause';
 import Play from './icons/Play';
 import Replay from './icons/Replay';
 import {
-  bugStyle,
   bulletStyle,
   centerStyle,
   circlePosition,
@@ -139,9 +137,6 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
             </div>
           </div>
         </div>
-        <a href='https://github.com/Knochenmark/pomodoro/issues' title='Report a bug' className={bugStyle}>
-          <Bug />
-        </a>
       </div>
     );
   }
