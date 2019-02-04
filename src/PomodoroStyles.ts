@@ -109,7 +109,7 @@ export const controlStyle = style({
 export const centerStyle = style({
   color: $numberColor,
   fontSize: '18vmin',
-  // TODO: Set digital font as fontFamily for time
+  fontFamily: 'Digital'
 });
 
 export const controlIconStyle = style({
