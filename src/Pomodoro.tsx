@@ -42,7 +42,8 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     this.resetClock = this.resetClock.bind(this);
   }
 
-  public convertToDisplayTime(ms: number) {
+  public convertToDisplayTime() {
+    const ms = this.state.time;
     const minutesNum = Math.floor(ms / 60);
     const secondsNum = ms % 60;
     const minutes = minutesNum < 10 ? '0' + minutesNum : String(minutesNum);
@@ -56,16 +57,13 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     this.setState({
       time: this.state.initialTime,
       isRunning: false
-    });
-    this.convertToDisplayTime(this.state.initialTime);
+    }, this.convertToDisplayTime);
     document.title = 'Pomodoro';
   }
 
   public updateTime() {
-    console.log(this.state.time)
     if (this.state.time > 0) {
-      this.setState({ time: this.state.time - 1 })
-      this.convertToDisplayTime(this.state.time - 1);
+      this.setState({ time: this.state.time - 1 }, this.convertToDisplayTime);
     } else {
       this.setState({ isRunning: false })
       clearInterval(this.state.intervalId);
@@ -90,8 +88,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     this.setState({
       time: newTime,
       initialTime: newTime
-    })
-    this.convertToDisplayTime(newTime);
+    }, this.convertToDisplayTime);
   }
 
   public render() {
