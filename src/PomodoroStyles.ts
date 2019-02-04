@@ -118,8 +118,8 @@ export const controlIconStyle = style({
   $nest: {
     '& svg': {
       fill: $mainColor,
-      width: '6vmin',
-      height: '6vmin',
+      width: '7vmin',
+      height: '7vmin',
       $nest: {
         '&:hover': {
           fill: $numberColor
