@@ -6,6 +6,7 @@ import Pause from './icons/Pause';
 import Play from './icons/Play';
 import Replay from './icons/Replay';
 import {
+  audioStyle,
   bulletStyle,
   centerStyle,
   circlePosition,
@@ -24,10 +25,13 @@ interface IPomodoroStateProps {
   time: number,
   initialTime: number,
   isRunning: boolean,
-  intervalId: number
+  intervalId: number,
+  alarmUrl: string;
 }
 
 export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
+  private audioRef: HTMLAudioElement | null;
+
   constructor(props = {}) {
     super(props);
     this.state = {
@@ -36,7 +40,8 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       seconds: '00',
       time: 1500,
       initialTime: 1500,
-      intervalId: 0
+      intervalId: 0,
+      alarmUrl: 'https://raw.githubusercontent.com/Knochenmark/static-files/master/alarm-sound.mp3'
     };
     this.startTimer = this.startTimer.bind(this);
     this.resetClock = this.resetClock.bind(this);
@@ -59,6 +64,10 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       isRunning: false
     }, this.convertToDisplayTime);
     document.title = 'Pomodoro';
+    if (this.audioRef) {
+      this.audioRef.pause();
+      this.audioRef.currentTime = 0;
+    }
   }
 
   public updateTime() {
@@ -67,6 +76,9 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     } else {
       this.setState({ isRunning: false })
       clearInterval(this.state.intervalId);
+      if (this.audioRef) {
+        this.audioRef.play();
+      }
     }
   }
 
@@ -117,6 +129,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
 
     return (
       <div className={pomodoroStyle}>
+        <audio ref={(ref) => { this.audioRef = ref }} src={this.state.alarmUrl} className={audioStyle} />
         <div className={squareStyle}>
           <div className={outerCircleStyle}>
             {bullets}

@@ -128,3 +128,7 @@ export const controlIconStyle = style({
     },
   }
 });
+
+export const audioStyle = style({
+  display: 'none'
+});
