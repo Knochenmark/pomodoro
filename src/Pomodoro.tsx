@@ -11,6 +11,7 @@ import {
   centerStyle,
   circlePosition,
   circleStyle,
+  colonStyle,
   controlIconStyle,
   controlStyle,
   numberStyle,
@@ -138,7 +139,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
             {numbers}
             <div className={centerStyle}>
               <span>{this.state.minutes}</span>
-              <span className={`colon${this.state.isRunning ? ' tick' : ''}`}>:</span>
+              <span className={`${this.state.isRunning ? colonStyle : ''}`}>:</span>
               <span>{this.state.seconds}</span>
             </div>
             <div className={controlStyle}>
