@@ -1,4 +1,7 @@
-import { style } from 'typestyle';
+import {
+  keyframes,
+  style
+} from 'typestyle';
 
 const $mainColor = '#abbcd980';
 const $numberColor = '#6483b9';
@@ -16,6 +19,19 @@ export const circlePosition = (pos: number, trans: number) => {
     transform: `rotate(${circleRotation(pos)}) translate(${trans}vmin) rotate(-${circleRotation(pos)})`
   })
 };
+
+const fade = keyframes({
+  '0%': { opacity: 0 },
+  '100%': { opacity: 1 }
+});
+
+export const colonStyle = style({
+  animationName: fade,
+  animationDuration: '0.5s',
+  animationIterationCount: 'infinite',
+  animationDirection: 'alternate',
+  animationTimingFunction: 'ease-in-out'
+});
 
 export const numberStyle = style({
   color: $numberColor,
