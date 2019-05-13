@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
 import Pomodoro from './Pomodoro';
 
 it('renders without crashing', () => {
