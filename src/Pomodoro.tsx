@@ -17,16 +17,16 @@ import {
   numberStyle,
   outerCircleStyle,
   pomodoroStyle,
-  squareStyle
+  squareStyle,
 } from './PomodoroStyles';
 
 interface IPomodoroStateProps {
-  minutes: string,
-  seconds: string,
-  time: number,
-  initialTime: number,
-  isRunning: boolean,
-  intervalId: number,
+  minutes: string;
+  seconds: string;
+  time: number;
+  initialTime: number;
+  isRunning: boolean;
+  intervalId: number;
   alarmUrl: string;
 }
 
@@ -42,7 +42,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       time: 1500,
       initialTime: 1500,
       intervalId: 0,
-      alarmUrl: 'https://raw.githubusercontent.com/Knochenmark/static-files/master/alarm-sound.mp3'
+      alarmUrl: 'https://raw.githubusercontent.com/Knochenmark/static-files/master/alarm-sound.mp3',
     };
     this.startTimer = this.startTimer.bind(this);
     this.resetClock = this.resetClock.bind(this);
@@ -60,10 +60,13 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
 
   public resetClock() {
     clearInterval(this.state.intervalId);
-    this.setState({
-      time: this.state.initialTime,
-      isRunning: false
-    }, this.convertToDisplayTime);
+    this.setState(
+      {
+        time: this.state.initialTime,
+        isRunning: false,
+      },
+      this.convertToDisplayTime
+    );
     document.title = 'Pomodoro';
     if (this.audioRef) {
       this.audioRef.pause();
@@ -75,7 +78,7 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
     if (this.state.time > 0) {
       this.setState({ time: this.state.time - 1 }, this.convertToDisplayTime);
     } else {
-      this.setState({ isRunning: false })
+      this.setState({ isRunning: false });
       clearInterval(this.state.intervalId);
       if (this.audioRef) {
         this.audioRef.play();
@@ -98,17 +101,25 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
       minutes = 60;
     }
     const newTime = minutes * 60;
-    this.setState({
-      time: newTime,
-      initialTime: newTime
-    }, this.convertToDisplayTime);
+    this.setState(
+      {
+        time: newTime,
+        initialTime: newTime,
+      },
+      this.convertToDisplayTime
+    );
   }
 
   public render() {
-
-    const numbers = Array.from(Array(60).keys()).filter(n => n % 5 === 0).map((num) => {
-      return <div key={`number${num}`} className={`${numberStyle} ${circlePosition(num, 35)}`}>{num}</div>
-    });
+    const numbers = Array.from(Array(60).keys())
+      .filter((n) => n % 5 === 0)
+      .map((num) => {
+        return (
+          <div key={`number${num}`} className={`${numberStyle} ${circlePosition(num, 35)}`}>
+            {num}
+          </div>
+        );
+      });
 
     const bullets = Array.from(Array(60).keys()).map((num) => {
       let size = 'small';
@@ -119,22 +130,28 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
         size = 'large';
       }
       const time = num <= Number(this.state.minutes) ? 'time' : '';
-      return <div
-        key={`bullet${num}`}
-        className={`${size} ${time} ${bulletStyle} ${circlePosition(num, 45)}`}
-        onClick={this.timeHandler.bind(this, num)}
-      />
+      return (
+        <div
+          key={`bullet${num}`}
+          className={`${size} ${time} ${bulletStyle} ${circlePosition(num, 45)}`}
+          onClick={this.timeHandler.bind(this, num)}
+        />
+      );
     });
 
-    const playIcon = this.state.isRunning ? <Pause /> : <Play />
+    const playIcon = this.state.isRunning ? <Pause /> : <Play />;
 
     return (
       <div className={pomodoroStyle}>
-        <audio ref={(ref) => { this.audioRef = ref }} src={this.state.alarmUrl} className={audioStyle} />
+        <audio
+          ref={(ref) => {
+            this.audioRef = ref;
+          }}
+          src={this.state.alarmUrl}
+          className={audioStyle}
+        />
         <div className={squareStyle}>
-          <div className={outerCircleStyle}>
-            {bullets}
-          </div>
+          <div className={outerCircleStyle}>{bullets}</div>
           <div className={circleStyle}>
             {numbers}
             <div className={centerStyle}>
@@ -143,8 +160,12 @@ export default class Pomodoro extends React.Component<{}, IPomodoroStateProps> {
               <span>{this.state.seconds}</span>
             </div>
             <div className={controlStyle}>
-              <i className={controlIconStyle} onClick={this.startTimer}>{playIcon}</i>
-              <i className={controlIconStyle} onClick={this.resetClock}><Replay /></i>
+              <i className={controlIconStyle} onClick={this.startTimer}>
+                {playIcon}
+              </i>
+              <i className={controlIconStyle} onClick={this.resetClock}>
+                <Replay />
+              </i>
             </div>
           </div>
         </div>

@@ -1,28 +1,25 @@
-import {
-  keyframes,
-  style
-} from 'typestyle';
+import { keyframes, style } from 'typestyle';
 
 const $mainColor = '#abbcd980';
 const $numberColor = '#6483b9';
 
 const circleRotation = (pos: number) => {
-  if ((pos * 6 - 90) < 0) {
-    return `${(pos * 6) - 90 + 360}deg`;
+  if (pos * 6 - 90 < 0) {
+    return `${pos * 6 - 90 + 360}deg`;
   } else {
-    return `${(pos * 6) - 90}deg`;
+    return `${pos * 6 - 90}deg`;
   }
 };
 
 export const circlePosition = (pos: number, trans: number) => {
   return style({
-    transform: `rotate(${circleRotation(pos)}) translate(${trans}vmin) rotate(-${circleRotation(pos)})`
-  })
+    transform: `rotate(${circleRotation(pos)}) translate(${trans}vmin) rotate(-${circleRotation(pos)})`,
+  });
 };
 
 const fade = keyframes({
   '0%': { opacity: 0 },
-  '100%': { opacity: 1 }
+  '100%': { opacity: 1 },
 });
 
 export const colonStyle = style({
@@ -30,7 +27,7 @@ export const colonStyle = style({
   animationDuration: '0.5s',
   animationIterationCount: 'infinite',
   animationDirection: 'alternate',
-  animationTimingFunction: 'ease-in-out'
+  animationTimingFunction: 'ease-in-out',
 });
 
 export const numberStyle = style({
@@ -56,27 +53,27 @@ export const bulletStyle = style({
   left: '50%',
   $nest: {
     '&:hover': {
-      backgroundColor: $numberColor
+      backgroundColor: $numberColor,
     },
     '&.time': {
-      backgroundColor: $numberColor
+      backgroundColor: $numberColor,
     },
     '&.large': {
       width: '6vmin',
       height: '6vmin',
-      margin: '-3vmin'
+      margin: '-3vmin',
     },
     '&.medium': {
       width: '4vmin',
       height: '4vmin',
-      margin: '-2vmin'
+      margin: '-2vmin',
     },
     '&.small': {
       width: '2vmin',
       height: '2vmin',
-      margin: '-1vmin'
-    }
-  }
+      margin: '-1vmin',
+    },
+  },
 });
 
 export const pomodoroStyle = style({
@@ -85,14 +82,14 @@ export const pomodoroStyle = style({
   margin: 0,
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
 });
 
 export const squareStyle = style({
   textAlign: 'center',
   width: '80vmin',
   height: '80vmin',
-  position: 'relative'
+  position: 'relative',
 });
 
 export const outerCircleStyle = style({
@@ -101,7 +98,7 @@ export const outerCircleStyle = style({
   width: '90vmin',
   left: '-5vmin',
   top: '-5vmin',
-  borderRadius: '50%'
+  borderRadius: '50%',
 });
 
 export const circleStyle = style({
@@ -113,19 +110,19 @@ export const circleStyle = style({
   borderRadius: '50%',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
 });
 
 export const controlStyle = style({
   position: 'absolute',
   top: '65%',
-  display: 'flex'
+  display: 'flex',
 });
 
 export const centerStyle = style({
   color: $numberColor,
   fontSize: '18vmin',
-  fontFamily: 'Digital'
+  fontFamily: 'Digital',
 });
 
 export const controlIconStyle = style({
@@ -138,13 +135,13 @@ export const controlIconStyle = style({
       height: '7vmin',
       $nest: {
         '&:hover': {
-          fill: $numberColor
+          fill: $numberColor,
         },
-      }
+      },
     },
-  }
+  },
 });
 
 export const audioStyle = style({
-  display: 'none'
+  display: 'none',
 });
