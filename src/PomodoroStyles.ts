@@ -42,6 +42,7 @@ export const numberStyle = style({
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '2.5vmin',
+  userSelect: 'none',
 });
 
 export const bulletStyle = style({
@@ -123,6 +124,7 @@ export const centerStyle = style({
   color: $numberColor,
   fontSize: '18vmin',
   fontFamily: 'Digital',
+  userSelect: 'none',
 });
 
 export const controlIconStyle = style({
